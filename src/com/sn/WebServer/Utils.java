@@ -10,8 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-import freemarker.template.*;
-
 public class Utils {
     public static byte[] readFile(String fileName) throws IOException {
         byte[] array = Files.readAllBytes(Paths.get(fileName));
@@ -58,11 +56,5 @@ public class Utils {
     static String convertStreamToString(java.io.InputStream is) {
         Scanner s = new Scanner(is).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
-    }
-    static void renderTemplateAndWrite(Configuration cfg, Map<String, Object> dataModel, String template, OutputStream os) throws IOException, TemplateException {
-        Template temp = cfg.getTemplate(template);
-        Writer out = new OutputStreamWriter(os);
-        temp.process(dataModel, out);
-
     }
 }
